@@ -1,0 +1,21 @@
+/* pages/join/join.wxss */
+.content {
+  display: flex;
+}
+
+.chunk {
+  width: 100px;
+  height: 100px;
+}
+
+.color1 {
+  background-color: yellow;
+}
+
+.color2 {
+  background-color: palegreen;
+}
+
+.color3 {
+  background-color: blanchedalmond;
+}

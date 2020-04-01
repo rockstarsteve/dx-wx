@@ -1,0 +1,9 @@
+<!--components/like/index.wxml-->
+<view class="container" bindtap="onLike">
+  <view class="rage">
+
+  </view>
+  <view class="text">
+    {{count}}
+  </view>
+</view>

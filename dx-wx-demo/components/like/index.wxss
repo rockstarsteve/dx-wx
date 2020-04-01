@@ -1,0 +1,21 @@
+/* components/like/index.wxss */
+.container {
+  display: inline-flex;
+  margin-top: 10rpx;
+}
+
+.rage {
+  border-radius: 18rpx;
+  background-color: pink;
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.text {
+  color: pink;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  position: relative;
+  left: 1rpx;
+  top: -8rpx;
+}
