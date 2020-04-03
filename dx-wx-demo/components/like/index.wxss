@@ -1,7 +1,8 @@
 /* components/like/index.wxss */
 .container {
+  margin-top: 200rpx;
+  margin-left: 200rpx;
   display: inline-flex;
-  margin-top: 10rpx;
 }
 
 .rage {

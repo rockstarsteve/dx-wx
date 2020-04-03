@@ -13,6 +13,12 @@ Page({
    */
   onLoad: function (options) {
     console.log("生命周期函数--监听页面加载")
+    wx.request({
+      url: 'http://localhost:8083/api/user/getUser',
+      success:function(res){
+        console.log(res)
+      }
+    })
   },
 
   /**
