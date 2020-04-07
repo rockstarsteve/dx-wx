@@ -1,0 +1,5 @@
+<!--components/showTimes/index.wxml-->
+<text>
+  你点击的次数是：{{times}}
+
+</text>

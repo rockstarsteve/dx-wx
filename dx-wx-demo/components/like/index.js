@@ -32,6 +32,8 @@ Component({
         count: count,
         like: !like
       })
+      //点击次数统计传递
+      this.triggerEvent("like",{},{})
 
     }
   }

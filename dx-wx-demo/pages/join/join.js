@@ -5,8 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+    times: 2
+  },
+
+  onLike: function (event) {
+    console.log(this.data.times)
+    this.setData({
+      times: ++this.data.times
+    })
 
   },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -15,7 +24,7 @@ Page({
     console.log("生命周期函数--监听页面加载")
     wx.request({
       url: 'http://localhost:8083/api/user/getUser',
-      success:function(res){
+      success: function (res) {
         console.log(res)
       }
     })

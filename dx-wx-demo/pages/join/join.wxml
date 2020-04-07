@@ -1,5 +1,3 @@
 <!--pages/join/join.wxml-->
-<v-like>
-
-</v-like>
-
+<v-like bind:like="onLike"></v-like>
+<v-show-times times="{{times}}"></v-show-times>
