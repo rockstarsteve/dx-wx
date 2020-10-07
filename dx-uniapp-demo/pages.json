@@ -4,7 +4,7 @@
 			"path": "pages/appointment/appointment",
 			"style": {
 				"navigationBarTitleText": "华夏银行",
-				"enablePullDownRefresh":true//开启下拉刷新
+				"enablePullDownRefresh":false//开启下拉刷新
 			}
 		}, {
 			"path": "pages/my-appointment/my-appointment",
@@ -20,6 +20,7 @@
 	    ,{
             "path" : "pages/appointment/appointment-plate",
             "style" : {
+				"navigationStyle":"custom",
 				"navigationBarTitleText": "华夏银行"
 			}
         }

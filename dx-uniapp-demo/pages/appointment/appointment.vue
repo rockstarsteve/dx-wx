@@ -98,10 +98,28 @@
 			}
 		},
 		onLoad() {
+			var _this = this
 			console.log('onLoad.....')
+			//获取用户的唯一id
+			uni.login({
+				provider: 'weixin',
+				success: function(loginRes) {
+					console.log('loginRes.authResult:', loginRes.code);
+					_this.sendRequest({
+						url: "",
+						method: "get",
+						data: {
+							code: loginRes.code
+						},
+						hideLoading: false,
+						success: function(res) {
+							console.log("获取数据:" + JSON.stringify(res));
+						}
+					})
+				}
+			});
 		},
 		onReady() {
-			// this.bindGetUserInfo(),
 			var _this = this;
 			console.log(_this)
 			let covers = []
@@ -119,7 +137,7 @@
 			this.map1 = uni.createMapContext("map1", this)
 		},
 		methods: {
-			appointmentPlate(){
+			appointmentPlate() {
 				console.log("跳转页面")
 				uni.navigateTo({
 					url: '/pages/appointment/appointment-plate?data=1'
@@ -238,6 +256,7 @@
 
 		.map-body {
 			position: relative;
+
 			.address-body {
 				background-color: #C0C0C0;
 				width: 90%;
@@ -249,7 +268,7 @@
 				transform: translateX(-50%);
 				z-index: 999;
 				bottom: -100rpx;
-				
+
 
 				.detail-content {
 					.address-text {}

@@ -1,9 +1,9 @@
 <template>
 	<view>
 		<view class="" @click="make">
-				办理业务
+			办理业务
 		</view>
-		
+
 	</view>
 </template>
 
@@ -11,16 +11,16 @@
 	export default {
 		data() {
 			return {
-				
+
 			}
 		},
 		onLoad(option) {
-			console.log('option:',option)
+			console.log('option:', option)
 		},
 		methods: {
-			make(){
+			make() {
 				uni.redirectTo({
-				    url: '/pages/appointment/appointment-success'
+					url: '/pages/appointment/appointment-success'
 				});
 			}
 		}

@@ -242,8 +242,26 @@ var _json = _interopRequireDefault(__webpack_require__(/*! ../../mock/json.js */
 //
 //
 //
-var _default = { data: function data() {return { menuList: [{ "img": "../../static/logo.png", "title": "个人现金业务", "waitNum": 3 }, { "img": "../../static/logo.png", "title": "个人现金业务", "waitNum": 2 }, { "img": "../../static/logo.png", "title": "个人现金业务", "waitNum": 1 }, { "img": "../../static/logo.png", "title": "个人现金业务", "waitNum": 1 }], map1: {}, array: [{ 'id': '1', 'name': '越秀区支行', 'latitude': 23.125363678462882, 'longitude': 113.26431360839841 }, { 'id': '2', 'name': '珠江新城区总行', 'latitude': 23.119048810056466, 'longitude': 113.32134810089109 }], index: 0, latitude: 23.1063392366794, longitude: 113.32366552947995, covers: [] };}, onLoad: function onLoad() {console.log('onLoad.....');}, onReady: function onReady() {// this.bindGetUserInfo(),
-    var _this = this;console.log(_this);var covers = [];for (var i = 0; i < _this.array.length; i++) {var obj = {};
+var _default = { data: function data() {return { menuList: [{ "img": "../../static/logo.png", "title": "个人现金业务", "waitNum": 3 }, { "img": "../../static/logo.png", "title": "个人现金业务", "waitNum": 2 }, { "img": "../../static/logo.png", "title": "个人现金业务", "waitNum": 1 }, { "img": "../../static/logo.png", "title": "个人现金业务", "waitNum": 1 }], map1: {}, array: [{ 'id': '1', 'name': '越秀区支行', 'latitude': 23.125363678462882, 'longitude': 113.26431360839841 }, { 'id': '2', 'name': '珠江新城区总行', 'latitude': 23.119048810056466, 'longitude': 113.32134810089109 }], index: 0, latitude: 23.1063392366794, longitude: 113.32366552947995, covers: [] };}, onLoad: function onLoad() {var _this = this;console.log('onLoad.....'); //获取用户的唯一id
+    uni.login({ provider: 'weixin', success: function success(loginRes) {console.log('loginRes.authResult:', loginRes.code);_this.sendRequest({ url: "",
+          method: "get",
+          data: {
+            code: loginRes.code },
+
+          hideLoading: false,
+          success: function success(res) {
+            console.log("获取数据:" + JSON.stringify(res));
+          } });
+
+      } });
+
+  },
+  onReady: function onReady() {
+    var _this = this;
+    console.log(_this);
+    var covers = [];
+    for (var i = 0; i < _this.array.length; i++) {
+      var obj = {};
       obj.width = 20;
       obj.height = 30;
       obj.iconPath = '../../static/logo.png';
