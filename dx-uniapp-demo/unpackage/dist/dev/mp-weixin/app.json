@@ -1,41 +1,34 @@
 {
   "pages": [
-    "pages/appointment/appointment",
-    "pages/my-appointment/my-appointment",
-    "pages/my-plate/my-plate",
-    "pages/appointment/appointment-plate",
-    "pages/appointment/appointment-success"
+    "pages/index/index",
+    "pages/my/my",
+    "pages/index/appointment",
+    "pages/index/appointment-success"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "华夏银行",
     "navigationBarBackgroundColor": "#FFFFFF",
-    "backgroundColor": "#FFFFFF"
+    "backgroundColor": "#F7F7F7"
   },
   "tabBar": {
-    "color": "#7A7E83",
-    "selectedColor": "#3cc51f",
+    "color": "#CDCDCD",
+    "selectedColor": "#464141",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/appointment/appointment",
-        "iconPath": "static/logo.png",
-        "selectedIconPath": "static/logo.png",
-        "text": "预约"
+        "pagePath": "pages/index/index",
+        "iconPath": "static/image/tabar/index.png",
+        "selectedIconPath": "static/image/tabar/index@act.png",
+        "text": "首页"
       },
       {
-        "pagePath": "pages/my-appointment/my-appointment",
-        "iconPath": "static/logo.png",
-        "selectedIconPath": "static/logo.png",
-        "text": "我的预约"
-      },
-      {
-        "pagePath": "pages/my-plate/my-plate",
-        "iconPath": "static/logo.png",
-        "selectedIconPath": "static/logo.png",
-        "text": "我的号牌"
+        "pagePath": "pages/my/my",
+        "iconPath": "static/image/tabar/my.png",
+        "selectedIconPath": "static/image/tabar/my@act.png",
+        "text": "我的"
       }
     ]
   },

@@ -1,67 +1,58 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/appointment/appointment",
+			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "华夏银行",
-				"enablePullDownRefresh":false//开启下拉刷新
+				"enablePullDownRefresh": false //开启下拉刷新
 			}
 		}, {
-			"path": "pages/my-appointment/my-appointment",
+			"path": "pages/my/my",
 			"style": {
 				"navigationBarTitleText": "华夏银行"
 			}
 		}, {
-			"path": "pages/my-plate/my-plate",
+			"path": "pages/index/appointment",
 			"style": {
 				"navigationBarTitleText": "华夏银行"
 			}
 		}
-	    ,{
-            "path" : "pages/appointment/appointment-plate",
+        ,{
+            "path" : "pages/index/appointment-success",
             "style" : {
-				"navigationStyle":"custom",
 				"navigationBarTitleText": "华夏银行"
 			}
         }
-        ,{
-            "path" : "pages/appointment/appointment-success",
-            "style" : {}
-        }
     ],
 	"tabBar": {
-		"color": "#7A7E83",
-		"selectedColor": "#3cc51f",
+		// "custom": true,
+		"color": "#CDCDCD",
+		"selectedColor": "#464141",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [{
-			"pagePath": "pages/appointment/appointment",
-			"iconPath": "static/logo.png",
-			"selectedIconPath": "static/logo.png",
-			"text": "预约"
+			"pagePath": "pages/index/index",
+			"iconPath": "static/image/tabar/index.png",
+			"selectedIconPath": "static/image/tabar/index@act.png",
+			"text": "首页"
 		}, {
-			"pagePath": "pages/my-appointment/my-appointment",
-			"iconPath": "static/logo.png",
-			"selectedIconPath": "static/logo.png",
-			"text": "我的预约"
-		}, {
-			"pagePath": "pages/my-plate/my-plate",
-			"iconPath": "static/logo.png",
-			"selectedIconPath": "static/logo.png",
-			"text": "我的号牌"
+			"pagePath": "pages/my/my",
+			"iconPath": "static/image/tabar/my.png",
+			"selectedIconPath": "static/image/tabar/my@act.png",
+			"text": "我的"
 		}]
 	},
 	"condition": { //模式配置，仅开发期间生效
 		"current": 0, //当前激活的模式（list 的索引项）
 		"list": [{
 			"name": "index", //模式名称
-			"path": "pages/appointment/appointment" //启动页面，必选
+			"path": "pages/index/appointment-success" //启动页面，必选
 		}]
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "华夏银行",
 		"navigationBarBackgroundColor": "#FFFFFF",
-		"backgroundColor": "#FFFFFF"
+		"backgroundColor": "#F7F7F7"
 	}
 }
