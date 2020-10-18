@@ -3,6 +3,8 @@ import App from './App'
 
 Vue.config.productionTip = false
 
+Vue.prototype.globalData = {}
+
 import './utils/request.js'
 
 App.mpType = 'app'

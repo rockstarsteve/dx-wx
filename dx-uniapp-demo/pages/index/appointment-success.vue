@@ -21,15 +21,15 @@
 					</view>
 					<view class="info-line">
 						<view class="line-left">预约类型</view>
-						<view class="line-right">个人现金业务</view>
+						<view class="line-right">{{menuName}}</view>
 					</view>
 					<view class="info-line">
 						<view class="line-left">预约日期</view>
-						<view class="line-right">2020-07-31</view>
+						<view class="line-right">{{date}}</view>
 					</view>
 					<view class="info-line">
-						<view class="line-left">预约手机号</view>
-						<view class="line-right">17709876548</view>
+						<view class="line-left">预约{{bussiType}}</view>
+						<view class="line-right">{{bussiCode}}</view>
 					</view>
 					<view class="cleavage-div"></view>
 				</view>
@@ -39,11 +39,11 @@
 					<view class="bottom-title">网点信息</view>
 					<view class="bottom-local">
 						<img src="../../static/image/common/logo_s.png" class="bottom-local-img"  alt="">
-						<view class="bottom-local-text">华夏银行宝山支行网点</view>
+						<view class="bottom-local-text">{{deptName}}</view>
 					</view>
-					<view class="bottom-line">地址：上海市宝山区牡丹江路1332-1346号</view>
-					<view class="bottom-line">电话:（021）56110330</view>
-					<view class="bottom-line">营业时间：周一到周五8:30-17:30</view>
+					<view class="bottom-line">地址： {{address}}</view>
+					<view class="bottom-line">电话： {{phone}}</view>
+					<view class="bottom-line">营业时间： {{businesshours}}</view>
 				</view>
 			</view>
 		</view>
@@ -55,10 +55,27 @@
 	export default {
 		data() {
 			return {
-
+				menuName: '',
+				date: '',
+				bussiType: '',
+				bussiCode: '',
+				deptName: '',
+				address: '',
+				businesshours: '',
+				phone: ''
 			}
 		},
-		methods: {}
+		onLoad: function(option) {
+			const _this = this
+			_this.menuName = option.menuName
+			_this.date = option.date
+			_this.bussiType = option.bussiType
+			_this.bussiCode = option.bussiCode
+			_this.deptName = option.deptName
+			_this.address = option.address
+			_this.businesshours = option.businesshours
+			_this.phone = option.phone
+		}
 	}
 </script>
 

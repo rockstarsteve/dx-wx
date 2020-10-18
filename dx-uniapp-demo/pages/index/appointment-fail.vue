@@ -7,7 +7,7 @@
 		<view class="appointment-note">
 			别紧张，试试再取一次！
 		</view>
-		<view class="btn">
+		<view class="btn" @tap="back()">
 			重新取号
 		</view>
 	</view>
@@ -20,7 +20,13 @@
 
 			}
 		},
-		methods: {}
+		methods: {
+			back(){
+				uni.navigateBack({
+					delta: 1
+				});
+			}
+		}
 	}
 </script>
 
