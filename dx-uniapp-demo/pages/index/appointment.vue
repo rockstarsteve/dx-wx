@@ -113,6 +113,9 @@
 			_this.address = option.address
 			_this.businesshours = option.businesshours
 			_this.phone = option.phone
+			_this.appointmentdate = currDate.getFullYear() + '-' + (Number.parseInt(currDate.getMonth()) + 1) + '-' + currDate.getDate()
+			_this.appointment = '09-40'
+			
 			_this.sendRequest({
 				url: "/api/getQueueMenus",
 				method: "post",
