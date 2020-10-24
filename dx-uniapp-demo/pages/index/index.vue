@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<view class="title-body">
-			<view class="title">离我最近</view>
+			<view class="title" @tap="goLimte">离我最近</view>
 			<image src="../../static/image/index/local.png" class="title-img"></image>
 			<view>
 				<picker class="uni-list-cell" @change="bindPickerChange" :value="deptIndex" :range="deptList" :range-key="'name'">
@@ -160,7 +160,7 @@
 					//初始化数据
 					_this.covers = covers
 					_this.deptList = tempArray
-					_this.isGetLocation()
+					_this.goLocation()
 					_this.map1 = uni.createMapContext("map1", _this)
 					_this.latitude = tempArray[0].latitude
 					_this.longitude = tempArray[0].longitude
@@ -175,6 +175,62 @@
 			})
 		},
 		methods: {
+			getDistance(lon1, lat1, lon2, lat2) {
+				lon1 = Number.parseFloat(lon1)
+				lat1 = Number.parseFloat(lat1)
+				lon2 = Number.parseFloat(lon2)
+				lat2 = Number.parseFloat(lat2)
+				const PI = 3.14159265358979323
+				const R = 6371229
+				let x, y, distance;
+				let lonres = lon1 > lon2 ? lon1 - lon2 : lon2 - lon1;
+				let latres = lat1 > lat2 ? lat1 - lat2 : lat2 - lat1;
+				x = (lonres) * PI * R * Math.cos(((lat1 + lat2) / 2) * PI / 180) / 180;
+				y = (lat2 - lat1) * PI * R / 180;
+				console.log(Math.hypot(x, y))
+				return distance = Math.hypot(x, y);
+			},
+			goLimte() {
+				const R = 6371229
+				let _this = this
+				console.log("切换最近。。。 ")
+				uni.getLocation({
+					type: 'wgs84',
+					success(res) {
+						let latitude, longitude;
+						latitude = res.latitude.toString();
+						longitude = res.longitude.toString();
+						console.log("deptList：", _this.deptList)
+						let dis = 2 * R
+						let limtIndex = 0
+						for (let index in _this.deptList) {
+							let tempDis = _this.getDistance(longitude, latitude, _this.deptList[index].longitude, _this.deptList[index].latitude)							if (tempDis < dis) {								dis = tempDis								limtIndex = index							}
+						}
+						//切换选择的机构
+						_this.deptIndex = limtIndex
+						_this.deptCode = _this.deptList[limtIndex].code
+						_this.deptName = _this.deptList[limtIndex].name
+						_this.address = _this.deptList[limtIndex].address
+						_this.businesshours = _this.deptList[limtIndex].businesshours
+						_this.phone = _this.deptList[limtIndex].phone
+						_this.latitude = _this.deptList[limtIndex].latitude
+						_this.longitude = _this.deptList[limtIndex].longitude
+						
+						//切换地图位置
+						_this.map1.moveToLocation({
+							longitude: _this.deptList[limtIndex].longitude.longitude,
+							latitude: _this.deptList[limtIndex].longitude.latitude
+						})
+					},
+					fail() {
+						uni.showToast({
+							title: '暂无权限获取您的位置。',
+							icon: 'none',
+							duration: 2000
+						});
+					}
+				});
+			},
 			setMenuData(detpCode) {
 				const _this = this
 				this.sendRequest({
@@ -202,17 +258,19 @@
 					}
 				})
 			},
-			appointmentPlate(menuId,menuName) {
+			appointmentPlate(menuId, menuName) {
 				const _this = this
-				if(!menuId){
+				if (!menuId) {
 					uni.showModal({
 						content: "服务暂不可用"
 					});
 					return
 				}
 				uni.navigateTo({
-					url: '/pages/index/appointment?menuId='+ menuId + '&menuName=' + menuName + '&deptName=' + _this.deptList[_this.deptIndex].name
-					 + '&deptCode=' + _this.deptList[_this.deptIndex].code + '&address=' + _this.address + '&businesshours=' + _this.businesshours + '&phone=' + _this.phone
+					url: '/pages/index/appointment?menuId=' + menuId + '&menuName=' + menuName + '&deptName=' + _this.deptList[_this
+							.deptIndex].name +
+						'&deptCode=' + _this.deptList[_this.deptIndex].code + '&address=' + _this.address + '&businesshours=' + _this.businesshours +
+						'&phone=' + _this.phone
 				});
 			},
 			getPhone(phone) {
@@ -258,28 +316,24 @@
 				_this.deptCode = _this.deptList[_this.deptIndex].code
 				_this.setMenuData(_this.deptCode)
 			},
-			bindGetUserInfo(e) {
-				if (e.detail.userInfo) {
-					//用户按了允许授权按钮
-					console.log("开始获取了用户的授权信息：", e)
-				} else {
-					//用户按了拒绝按钮
-				}
-			},
 			getAuthorizeInfo(a = "scope.userLocation") { //1. uniapp弹窗弹出获取授权（地理，个人微信信息等授权信息）弹窗
 				var _this = this;
 				uni.authorize({
 					scope: a,
 					success(res) { //1.1 允许授权
 						console.log("允许了授权的信息：", res)
-						_this.getLocationInfo();
+						_this.goLocation();
 					},
 					fail() { //1.2 拒绝授权
-						console.log("你拒绝了授权，无法获得周边信息")
+						uni.showToast({
+							title: '暂无权限获取您的位置',
+							icon: 'none',
+							duration: 2000
+						});
 					}
 				})
 			},
-			getLocationInfo() { //2. 获取地理位置
+			goLocation() { //2. 获取地理位置
 				var _this = this;
 				uni.getLocation({
 					type: 'wgs84',
@@ -291,23 +345,16 @@
 							longitude: longitude,
 							latitude: latitude
 						})
+					},
+					fail() {
+						uni.showToast({
+							title: '暂无权限获取您的位置',
+							icon: 'none',
+							duration: 2000
+						});
 					}
 				});
 			},
-			isGetLocation(a = "scope.userLocation") { // 3. 检查当前是否已经授权访问scope属性，参考下截图
-				var _this = this;
-				uni.getSetting({
-					success(res) {
-						if (!res.authSetting[a]) { //3.1 每次进入程序判断当前是否获得授权，如果没有就去获得授权，如果获得授权，就直接获取当前地理位置
-							console.log("没有获取授权。。。。")
-							_this.getAuthorizeInfo()
-						} else {
-							console.log("获取地址。。。。")
-							_this.getLocationInfo()
-						}
-					}
-				});
-			}
 		}
 	}
 </script>

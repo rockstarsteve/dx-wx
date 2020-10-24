@@ -111,7 +111,7 @@
 						_this.info.orgcode = obj.orgcode
 						_this.qrImg = QR.createQrCodeImg(obj.queuenum, {size: parseInt(100)})
 						_this.sendRequest({
-							url: "/api/getQueueMenus",
+							url: "/api/getSysOffice",
 							method: "post",
 							data: {
 								code: obj.orgcode

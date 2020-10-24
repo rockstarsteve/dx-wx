@@ -196,7 +196,7 @@
 					success: function(res) {
 						if (res.result == '1') {
 							uni.redirectTo({
-								url: '/pages/index/appointment-success?menuName=' + _this.menuName + '&date=' + '2020-12-12' +
+								url: '/pages/index/appointment-success?menuName=' + _this.menuName + '&date=' + _this.currDate +
 									'&bussiType=' +
 									_this.appointmentTypeList[_this.appointmentTypeIndex].name + '&bussiCode=' + _this.cardInput +
 									'&deptName=' + _this.deptName +
